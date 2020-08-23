@@ -1,0 +1,36 @@
+<%- include('_header'); %>
+
+<% if(typeof(user) !== "undefined") { %>
+    <script> window.location.replace("/")</script>
+<% } else { %>
+    <div class="container">
+        <form action="/user/process-signup" method="POST">
+            <p class="form-group">
+                <label for="name">Name:</label>
+                <input type="text" name="name" id="name" >
+            </p>
+            <p class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" name="email" id="email" >
+            </p>
+            <p class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" name="password" id="password" >
+            </p>
+            <p class="form-group">
+                <label for="passwordAgain">Repeat Password:</label>
+                <input type="password" name="passwordAgain" id="passwordAgain" >
+            </p>
+            <p class="form-group">
+                <input type="checkbox" id="agreed" name="agreed">
+                <label for="agreed"> I agree to <a href="/tos">terms of service</a></label>
+            </p>
+            <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+            <p class="form-group form-group-submit">
+                <button>Register</button>
+            </p>
+        </form>
+    </div><!--container -->
+<% } %>
+
+<%- include('_footer'); %>

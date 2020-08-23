@@ -1,0 +1,28 @@
+<%- include('_header'); %>
+
+<div class="container">
+    <% if(post) { %>
+        <div class="editor-rules">
+            <p>- Styling with Markdown is supported.</p>
+            <p>- HTML is not allowed.</p>
+        </div>
+        <form action="/post/<%= post._id %>/process-edit-post" method="POST">
+            <p class="form-group">
+                <label for="title">Title:</label>
+                <input type="text" value="<%= post.title %>" name="title" id="title" >
+            </p>
+            <p class="form-group">
+                <label for="content">Content:</label>
+                <textarea name="content" id="content"><%= post.content %></textarea>
+            </p>
+            <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+            <p class="form-group form-group-submit">
+                <button>Update Post</button>
+            </p>
+        </form>
+    <% } else { %>
+        <script> window.location.replace("/")</script>
+    <% } %>
+</div><!--container -->
+
+<%- include('_footer'); %>

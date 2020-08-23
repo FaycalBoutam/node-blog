@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Sans@1&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+      <% if (typeof(title) !== "undefined") { %>
+        <title><%= title %></title>
+      <% } else { %>
+        <title>Node Blog</title>
+      <% } %>
+  </head>
+  <body>
+    <div class="main-container">
+      <header>
+        <div class="container">
+          <p class="logo"><a href="/">Node-Blog</a></p>
+
+          <!-- message -->
+          <% if (flash.message && flash.message.length > 0) { %>
+            <% if (flash.message[0].success) { %>
+              <div class="message message-success">
+                <p class="success"><%= flash.message[0].success %></p>
+              </div>
+            <% } else { %>
+              <div class="message message-errors">
+                <% flash.message.forEach(function(m) { %>
+                  <p class="error"><%= m.msg %></p>
+                <% }) %>
+              </div>
+            <% } %>
+          <% } %>
+        
+          <nav>
+            <ul>
+                <% if(typeof(user) !== "undefined") { %>
+                  <li>
+                    <form action="/user/signout" method="POST">
+                      <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                      <button>Log Out</button>
+                    </form>
+                  </li>
+                  <li><a href="/user/profile">Account</a></li>
+                  <li><a href="/post/create">Create</a></li>
+                <% } else { %>
+                  <li><a href="/user/signup">Register</a></li>
+                  <li><a href="/user/signin">Log In</a></li>
+                <% } %>
+            </ul>
+          </nav>
+        </div><!-- .container -->
+      </header> 

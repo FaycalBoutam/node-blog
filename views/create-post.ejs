@@ -1,0 +1,24 @@
+<%- include('_header'); %>
+
+<div class="container">
+    <div class="editor-rules">
+        <p>- Styling with Markdown is supported.</p>
+        <p>- HTML is not allowed.</p>
+    </div>
+    <form action="/post/process-create-post" method="POST">
+        <p class="form-group">
+            <label for="title">Title:</label>
+            <input type="text" name="title" id="title" >
+        </p>
+        <p class="form-group">
+            <label for="content">Content:</label>
+            <textarea name="content" id="content"></textarea>
+        </p>
+        <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+        <p class="form-group form-group-submit">
+            <button>Create Post</button>
+        </p>
+    </form>
+</div><!--container -->
+
+<%- include('_footer'); %>

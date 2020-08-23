@@ -1,0 +1,51 @@
+<%- include('_header'); %>
+
+<% if (userProfile) { %>
+    <div class="container">
+        <div class="form-section">
+            <h2>Update Profile</h2>
+            <form action="/user/profile/process-update" method="POST">
+                <p class="form-group">
+                    <label for="name">Name:</label>
+                    <input type="text" value="<%= userProfile.name %>" name="name" id="name" >
+                </p>
+                <p class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" value="<%= userProfile.email %>" name="email" id="email" >
+                </p>
+                <p class="form-group">
+                    <label for="password">Password:</label>
+                    <input type="password" name="password" id="password" >
+                </p>
+                <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                <p class="form-group form-group-submit">
+                    <button>Update</button>
+                </p>
+            </form>
+        </div><!-- .form-section -->
+
+        <div class="form-section">
+            <h2>Update Password</h2>
+            <form action="/user/profile/process-password-update" method="POST">
+                <p class="form-group">
+                    <label for="oldpassword">Current Password:</label>
+                    <input type="password" name="oldpassword" id="oldpassword" >
+                </p>
+                <p class="form-group">
+                    <label for="newPassword">New Password:</label>
+                    <input type="password" name="newPassword" id="newPassword" >
+                </p>
+                <p class="form-group">
+                    <label for="passwordAgain">Confirm Password:</label>
+                    <input type="password" name="passwordAgain" id="passwordAgain" >
+                </p>
+                <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                <p class="form-group form-group-submit">
+                    <button>Update</button>
+                </p>
+            </form>
+        </div><!-- .form-section -->
+    </div><!-- .container -->
+<% } %>
+    
+<%- include('_footer'); %>

@@ -1,0 +1,39 @@
+<%- include('_header'); %>
+    
+<% if (post) { %>
+    <div class="container">
+        <div class="post-container">
+
+            <% if (user && post.user._id.toString() === user.user._id.toString()) { %>
+                <div class="post-moderate">
+                    <form class="edit" action="/post/<%= post._id %>/edit" method="GET">
+                        <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                        <button>Edit</button>
+                    </form>
+                    <form class="remove" action="/post/<%= post._id %>/remove" method="POST" onsubmit="confirm('Are you sure you want to delete this post?')">
+                        <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                        <button>Delete</button>
+                    </form>
+                </div>
+            <% } %>
+            <h1>
+                <a href="/post/<%= post._id %>">
+                    <% if(post.title) { %>
+                        <%= post.title %>
+                    <% } else { %>
+                        Untitled
+                    <% } %>
+                </a>
+            </h1>
+            <div class="post-meta">
+                <p title="Author" class="post-meta-author"><%= post.user.name %></p>
+                <p title="Creted/Updated" class="post-meta-date"><%= post.date.getMonth() + 1 %>/<%= post.date.getDate() %>/<%= post.date.getFullYear() %></p>
+                <p title="Views" class="post-meta-views"><%= post.views %></p>
+            </div>
+            <p class="post-content"><%- filterHTML(post.content) %></p>
+
+        </div>
+    </div><!-- .container.post-container -->
+<% } %>
+
+<%- include('_footer'); %>
