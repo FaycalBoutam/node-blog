@@ -10,7 +10,6 @@ const db = require("./inc/db")
 const usersRouter = require("./routes/usersRoute")
 const poststRouter = require("./routes/postsRoute")
 const postModel = require("./models/postsModel")
-// const cors = require("cors")
 
 app.set("view engine", "ejs")
 
@@ -28,7 +27,6 @@ app.use(
 )
 
 app.use(flash())
-// app.use(cors())
 
 app.use(csrf())
 app.use((req, res, next) => {

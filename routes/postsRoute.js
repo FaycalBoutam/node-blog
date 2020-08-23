@@ -34,14 +34,4 @@ router.get("/:id", postController.ViewPost)
 // @access Private
 router.post("/:id/remove", Auth, postController.DeletePost)
 
-// @route  POST /post/my-posts
-// @desc   Get all posts by user
-// @access Private
-// router.post("/my-posts", Auth, postController.ViewAllByUser)
-
-// @route  GET /post/:shortUrl
-// @desc   Get post by shortUrl
-// @access Public
-// router.get("/:shortUrl", postController.ViewSingle)
-
 module.exports = router

@@ -37,15 +37,6 @@ exports.CreatePost = async (req, res) => {
   }
 }
 
-// view all posts by user
-// exports.ViewAllByUser = async (req, res) => {
-//   const posts = await postModel.find({ user: req.user.id })
-//   if (!posts) {
-//     return res.status(404).json({ errors: [{ error: "post not found" }] })
-//   }
-//   res.json({ posts })
-// }
-
 // view edit post page
 exports.ViewEditPost = async (req, res) => {
   const post = await postModel.findOne({ _id: req.params.id, user: req.visitorId })
