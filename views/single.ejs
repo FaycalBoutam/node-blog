@@ -16,17 +16,15 @@
                     </form>
                 </div>
             <% } %>
-            <h1>
-                <a href="/post/<%= post._id %>">
-                    <% if(post.title) { %>
-                        <%= post.title %>
-                    <% } else { %>
-                        Untitled
-                    <% } %>
-                </a>
+            <h1 class="entry-title">
+                <% if(post.title) { %>
+                    <%= post.title %>
+                <% } else { %>
+                    Untitled
+                <% } %>
             </h1>
             <div class="post-meta">
-                <p title="Author" class="post-meta-author"><%= post.user.name %></p>
+                <p title="Author" class="post-meta-author vcard"><%= post.user.name %></p>
                 <p title="Creted/Updated" class="post-meta-date"><%= post.date.getMonth() + 1 %>/<%= post.date.getDate() %>/<%= post.date.getFullYear() %></p>
                 <p title="Views" class="post-meta-views"><%= post.views %></p>
             </div>
